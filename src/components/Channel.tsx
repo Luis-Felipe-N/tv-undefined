@@ -40,8 +40,8 @@ export function Channel({ countryCode, channelId, onChangeChannel }: IChannelPro
     const channelsFilted = data?.filter(channel => channel.country === countryCode)
 
     return (
-        <div className="w-1/2">
-            <ul>
+        <div className="w-1/2 max-h-screen overflow-auto">
+            <ul className="overflow-auto">
             {channelsFilted?.map(channel => (
                 <li onClick={() => onChangeChannel(channel.id)} className="flex gap-4 bg-gray-800 p-4 mb-4" key={channel.id}>
                     <div className="bg-gray-900 w-40 h-48 flex items-center justify-center">
