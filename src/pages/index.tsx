@@ -1,20 +1,15 @@
 import Head from 'next/head'
 import { Country } from '@/components/Country'
 import { Channel } from '@/components/Channel'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Stream } from '@/components/Stream'
+import { useDataContext } from '@/hooks/useDataContext'
 
 export default function Home() {
-  const [country, setCountry] = useState('BR')
-  const [channel, setChannel] = useState('BR')
 
-  function handleChangeCountry(countryCode: string) {
-    setCountry(countryCode)
-  }
+  const { isLoading } = useDataContext()
 
-  function handleChangeChannel(channelId: string) {
-    setChannel(channelId)
-  }
+  if (isLoading) return <h1>Carregando</h1>
 
   return (
     <>
@@ -24,10 +19,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex gap-2 p-4 bg-gray-900 h-full">
-        <Country countryCode={country} onChangeCountry={handleChangeCountry}/>
-        <Channel countryCode={country} channelId={channel} onChangeChannel={handleChangeChannel}/>
-        <Stream channelId={channel} /> 
+      <main className="absolute top-0 left-0 right-0 bg-gray-900 h-full">
+        <div className="flex gap-2 p-4 bg-gray-900 h-full">
+          <Country />
+          <Channel />
+          <Stream /> 
+        </div>
       </main>
     </>
   )

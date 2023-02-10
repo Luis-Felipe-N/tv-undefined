@@ -1,4 +1,8 @@
+import { useChannel } from "@/hooks/useChannel";
+import { useDataContext } from "@/hooks/useDataContext";
+import { useStateContext } from "@/hooks/useStateContext";
 import { channel } from "diagnostics_channel";
+import { useCallback, useState } from "react";
 import { useQuery } from "react-query"
 
 interface IChannel {
@@ -22,29 +26,23 @@ interface IChannel {
 }
 
 interface IChannelProps {
-    countryCode: string;
-    channelId: string;
-    onChangeChannel: (channelid: string) => void
+
 }
 
-export function Channel({ countryCode, channelId, onChangeChannel }: IChannelProps) {
+export function Channel({  }: IChannelProps) {
+    const { handleChangeChannel, countryCode } = useStateContext()
+    const { filterChannelsByCountry } = useChannel()
     
-    const { isLoading, error, data } = useQuery<IChannel[]>('repoCountries', () =>
-    fetch('https://iptv-org.github.io/api/channels.json').then(res =>
-            res.json()
-        )
-    )
+    const channelsFilted = filterChannelsByCountry(countryCode)
     
-    if (isLoading) return <h1>Loading...</h1>
-    
-    const channelsFilted = data?.filter(channel => channel.country === countryCode)
-
     return (
         <div className="w-1/2 max-h-screen overflow-auto">
-            <ul className="overflow-auto">
+            <ul className="overflow-auto pt-32">
             {channelsFilted?.map(channel => (
-                <li onClick={() => onChangeChannel(channel.id)} className="flex gap-4 bg-gray-800 p-4 mb-4" key={channel.id}>
-                    <div className="bg-gray-900 w-40 h-48 flex items-center justify-center">
+                <li onClick={() => handleChangeChannel(channel.id)} className="flex rounded-lg gap-4 bg-gray-800 p-4 mb-4" key={channel.id}>
+                    <div className="bg-gray-900 w-40 h-48 flex items-center justify-center rounded-lg
+
+">
                         <img 
                             className="w-24"
                             src={channel.logo} 
