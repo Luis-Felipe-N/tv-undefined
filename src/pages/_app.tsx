@@ -11,12 +11,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <QueryClientProvider client={queClient}>
-        <DataProvider >
-          <StateProvider>
+
             <NavBar />
             <Component {...pageProps} />
-          </StateProvider>
-        </DataProvider>
+
       </QueryClientProvider>
     </>
   )

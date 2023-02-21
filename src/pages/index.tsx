@@ -1,15 +1,8 @@
 import Head from 'next/head'
-import { Country } from '@/components/Country'
 import { Channel } from '@/components/Channel'
-import { useContext, useState } from 'react'
-import { Stream } from '@/components/Stream'
-import { useDataContext } from '@/hooks/useDataContext'
+
 
 export default function Home() {
-
-  const { isLoading } = useDataContext()
-
-  if (isLoading) return <h1>Carregando</h1>
 
   return (
     <>
@@ -21,9 +14,8 @@ export default function Home() {
       </Head>
       <main className="absolute top-0 left-0 right-0 bg-gray-900 h-full">
         <div className="flex gap-2 p-4 bg-gray-900 h-full">
-          <Country />
-          <Channel />
-          <Stream /> 
+          <Channel/>
+          {/* <Stream streams={dataStreams} />  */}
         </div>
       </main>
     </>
