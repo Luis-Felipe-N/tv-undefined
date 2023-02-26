@@ -29,16 +29,16 @@ export function Channel() {
         return channels.filter(channels => channels.country === "BR" && listChannelsActive.includes(channels.id))
     }, []) 
     
-    if (isLoadingChannels) return <h1>carrengando</h1>
+    if (isLoadingChannels) return <h1>Carregando...</h1>
 
     let channelsFilted = filterByStreamsActive(dataChannels || [], dataStreams || [])
 
     return (
-        <div className="w-1/2 max-h-screen overflow-auto">
-                <ul className="overflow-auto pt-32">
+        <div className="w-9/12 max-h-screen overflow-auto p-2">
+                <ul className="">
                 {channelsFilted?.map(channel => (
                     <Link key={channel.id} href={`/stream/${channel.id}`}>
-                        <li className="flex rounded-lg gap-4 bg-gray-800 p-4 mb-4">
+                        <li className="channel flex border-gray-50 rounded-lg gap-4 bg-gray-800 p-4 mb-4">
                             <div className="bg-gray-900 w-40 h-48 flex items-center justify-center rounded-lg">
                                 <img 
                                     className="w-24"

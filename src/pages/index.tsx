@@ -12,10 +12,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="absolute top-0 left-0 right-0 bg-gray-900 h-full">
-        <div className="flex gap-2 p-4 bg-gray-900 h-full">
+      <main className="bg-gray-900 h-full">
+        <div className="flex justify-center gap-2 p-4 bg-gray-900 h-full">
           <Channel/>
-          {/* <Stream streams={dataStreams} />  */}
         </div>
       </main>
     </>

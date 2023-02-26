@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.channel {
+  transition: .2s;
+}
+
+.channel:focus {
+  outline: none;
+}
+
+.channel:hover, .channel:focus {
+  box-shadow: 0 0 0 2px white;
+}
+
 
 ::-webkit-scrollbar {
   width: 0px;
